@@ -6,23 +6,30 @@ using System.Threading.Tasks;
 
 namespace RPSLS
 {
-   public class Computer : Player
+    public class Computer : Player
     {
         //Member Variable
+        public string name;
 
 
         //Constructor
         public Computer()
         {
+            
 
         }
+       
 
         //Member Method
 
-        public int RandomizedInteger()
-        {            
-            Random random = new Random();
-            return random.Next(0, 6);            
-        }        
+        public override string SelectGesture()
+        {
+                int result;
+                
+                List<string> gesture = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
+                Random random = new Random();
+                result = random.Next(5);
+                return gesture[result];           
+        }
     }
 }
