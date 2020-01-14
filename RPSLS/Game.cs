@@ -9,82 +9,173 @@ namespace RPSLS
     public class Game
     {
         //Member Variable
-        public string name;
-        public int score;
+        int player1Points;
+        int player2Points;
+        int score;
+        int gameModeSelected;
+        public Player player1;
+        public Player player2;
+        public string player1Selection;
+        public string player2Selection;
 
 
 
         //Constructor
-        public Game(string name, int score)
+        public Game()
         {
-            this.name = name;
-            this.score = score;
+            score = 0;
 
-            
+            if (gameModeSelected == 1)
+            {                
+                player1 = new Human("Player 1");                
+                player2 = new Human("Player 2");
+            }
+            else if (gameModeSelected == 2)
+            {                
+                player1 = new Human("Player");
+                player2 = new Computer();
+            }
+            else
+            {
+                MainMenu();
+            }
         }
-
 
         //Member Method
         public void StartGame()
         {
+            MainMenu();
+            GameGestureSelection();
+                                
 
         }
 
         public void MainMenu()
         {
-            
+
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock");
-            Console.WriteLine("1. Player vs Player \n2. Player vs Computer");
+            Console.WriteLine("Select 1 for Human vs Human \nSelect 2 for Human vs Computer");
             int selection = int.Parse(Console.ReadLine());
 
             switch (selection)
             {
                 case 1:
                     Console.WriteLine("You have selected Player vs Player");
-                    InstantiatePVP();
-                    PlayerVSPlayer();
                     break;
 
                 case 2:
                     Console.WriteLine("You have selected Player vs Computer");
-                    InstatiatePVC();
-                    PlayerVSComputer();
+                    break;
+
+                case 3:
+                    Instructions();
+                    MainMenu();
                     break;
 
                 default:
                     Console.WriteLine("You have selected an incorrect key, please try again..");
+                    MainMenu();
                     break;
             }
+            gameModeSelected = selection;
         }
-
-        public void PlayerVSPlayer()
+        public void Instructions()
         {
-
+            Console.WriteLine("Instructions:");
+            Console.WriteLine($"Scissors cuts Paper \nPaper covers Rock \nScissors cuts Paper \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors" +
+                             $"\nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock \nand as always... \nRock crushes Scissors " +
+                             $"\n - Sheldon(BBT) \nPress enter to go back to the Main Menu");
+            Console.ReadLine();
         }
-        public void InstantiatePVP()
+        public void GameGestureSelection()
         {
-            
-            Console.WriteLine("Type a Name for Player 1");
-            string result1 = Console.ReadLine();
-            Human human1 = new Human("Player 1");
-            Console.WriteLine("Type a Name for Player 2");
-            string result2 = Console.ReadLine();
-            Human human2 = new Human("Player 2");           
+           player1Selection = player1.SelectGesture();
+           player2Selection = player2.SelectGesture();
         }
-        public void PlayerVSComputer()
+        public void PointAssigner()
         {
+            if (player1Selection == "Rock")
+            {
+                    //It Can Beat
+                if (player2Selection  == "Lizard" || player2Selection == "Scissors")
+                {
+                    player1Points++;
+                }
+                else if (player2Selection  == "Spock" || player2Selection == "Paper")
+                {
+                    player2Points++;
+                }
+                else
+                {
+                    Console.WriteLine("Its a Tie");
+                }                    
+            }
+
+            if (player1Selection == "Paper")
+            {
+                if (player2Selection == "Spock" || player2Selection == "Rock")
+                {
+                    player1Points++;
+                }
+                else if (player2Selection == "Scissors" || player2Selection == "Lizard")
+                {
+                    player2Points++;
+                }
+                else
+                {
+                    Console.WriteLine("Its a Tie");
+                }
+            }
+
+            if (player1Selection == "Scissors")
+            {
+                if (player2Selection == "Lizard" || player2Selection == "Paper")
+                {
+                    player1Points++;
+                }
+                else if (player2Selection == "Rock" || player2Selection == "Spock")
+                {
+                    player2Points++;
+                }
+                else
+                {
+                    Console.WriteLine("Its a Tie");
+                }
+            }
+
+            if (player1Selection == "Lizard")
+            {
+                if (player2Selection == "Spock" || player2Selection == "Paper")
+                {
+                    player1Points++;
+                }
+                else if (player2Selection == "Rock" || player2Selection == "Scissors")
+                {
+                    player2Points++;
+                }
+                else
+                {
+                    Console.WriteLine("Its a Tie");
+                }
+            }
+
+            if (player1Selection == "Spock")
+            {
+                if (player2Selection == "Scissors" || player2Selection == "Rock")
+                {
+                    player1Points++;
+                }
+                else if (player2Selection == "Lizard" || player2Selection == "Paper")
+                {
+                    player2Points++;
+                }
+                else
+                {
+                    Console.WriteLine("Its a Tie");
+                }
+            }
 
         }
-        public void InstatiatePVC()
-        {
 
-        }
-
-        //Sandbox
-
-        public void TestGame()
-        {
-            while(player.)
-        }
     }
 }

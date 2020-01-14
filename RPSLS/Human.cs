@@ -9,7 +9,7 @@ namespace RPSLS
     public class Human : Player
     {
         //Member Variable
-        public string name;
+        
        
 
         //Constructor
@@ -66,7 +66,7 @@ namespace RPSLS
 
             List<string> gesture = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
             return gesture[gestureindex];
-        }
+        } 
 
     }
 }

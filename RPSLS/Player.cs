@@ -11,6 +11,7 @@ namespace RPSLS
         //Member Variable
         public string name;
         public int score;
+        public string gesture;
 
 
 
