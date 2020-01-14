@@ -9,10 +9,9 @@ namespace RPSLS
     public class Game
     {
         //Member Variable
-        int player1Points;
-        int player2Points;
-        int score;
-        int gameModeSelected;
+        public int player1Points;
+        public int player2Points;   
+        public int gameModeSelected;
         public Player player1;
         public Player player2;
         public string player1Selection;
@@ -23,30 +22,19 @@ namespace RPSLS
         //Constructor
         public Game()
         {
-            score = 0;
-
-            if (gameModeSelected == 1)
-            {                
-                player1 = new Human("Player 1");                
-                player2 = new Human("Player 2");
-            }
-            else if (gameModeSelected == 2)
-            {                
-                player1 = new Human("Player");
-                player2 = new Computer();
-            }
-            else
-            {
-                MainMenu();
-            }
+            
+            
+           
         }
 
         //Member Method
         public void StartGame()
         {
             MainMenu();
+            InstatiatePlayers();
             GameGestureSelection();
-                                
+            PointAssigner();
+            CheckRoundWinner();     
 
         }
 
@@ -54,7 +42,8 @@ namespace RPSLS
         {
 
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock");
-            Console.WriteLine("Select 1 for Human vs Human \nSelect 2 for Human vs Computer");
+            Console.WriteLine("Select 1 for Human vs Human \nSelect 2 for Human vs Computer \nSelect 3 for Instructions");
+            
             int selection = int.Parse(Console.ReadLine());
 
             switch (selection)
@@ -70,14 +59,31 @@ namespace RPSLS
                 case 3:
                     Instructions();
                     MainMenu();
-                    break;
+                    return;
 
                 default:
                     Console.WriteLine("You have selected an incorrect key, please try again..");
                     MainMenu();
-                    break;
+                    return;
             }
             gameModeSelected = selection;
+        }
+        public void InstatiatePlayers()
+        {
+            if (gameModeSelected == 1)
+            {
+                player1 = new Human("Player 1"); //Test User Input
+                player2 = new Human("Player 2");
+            }
+            else if (gameModeSelected == 2)
+            {
+                player1 = new Human("Player");
+                player2 = new Computer();
+            }
+            else
+            {
+                Console.WriteLine(" ");
+            }
         }
         public void Instructions()
         {
@@ -86,11 +92,14 @@ namespace RPSLS
                              $"\nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock \nand as always... \nRock crushes Scissors " +
                              $"\n - Sheldon(BBT) \nPress enter to go back to the Main Menu");
             Console.ReadLine();
+        
         }
         public void GameGestureSelection()
         {
-           player1Selection = player1.SelectGesture();
-           player2Selection = player2.SelectGesture();
+            Console.WriteLine("Player 1");
+            player1Selection = player1.SelectGesture();
+            Console.WriteLine("Player 2");
+            player2Selection = player2.SelectGesture();
         }
         public void PointAssigner()
         {
@@ -176,6 +185,20 @@ namespace RPSLS
             }
 
         }
-
+        public void CheckRoundWinner()
+        {
+            if (player1Points == 2)
+            {
+                Console.WriteLine("Player 1 is the Winner!");
+            }
+            else if (player2Points == 2)
+            {
+                Console.WriteLine("Player 2 is the Winner!");
+            }
+            else
+            {
+                Console.WriteLine("Error 414");
+            }
+        }   
     }
 }
