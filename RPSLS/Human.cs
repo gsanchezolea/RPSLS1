@@ -61,8 +61,8 @@ namespace RPSLS
                     break;
             }
 
-            List<string> gesture = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
-            return gesture[gestureindex];
+            
+            return gestures[gestureindex];
         }
     }
 }

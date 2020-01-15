@@ -26,10 +26,9 @@ namespace RPSLS
         public override string SelectGesture()
         {
             int randomNumberGenerated;
-            string result;
-            List<string> gesture = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
+            string result;           
             randomNumberGenerated = GenerataRandomNumber();
-            result = gesture[randomNumberGenerated];
+            result = gestures[randomNumberGenerated];
             Console.WriteLine("Computer has selected " + result);
             return result;
         }
