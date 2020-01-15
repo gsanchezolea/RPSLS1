@@ -13,14 +13,9 @@ namespace RPSLS
         public int score;
         public string gesture;
 
-
-
-
-
+        //Constructor (Class is abstract, therefore this class does not need to be insantiated)
 
         //Member Method
         public abstract string SelectGesture();
-        
-       
     }
 }

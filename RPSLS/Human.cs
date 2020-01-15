@@ -9,18 +9,15 @@ namespace RPSLS
     public class Human : Player
     {
         //Member Variable
-        
-       
+
 
         //Constructor
         public Human(string name)
         {
             this.name = name;
-            
         }
 
         //Member Method
-
         public override string SelectGesture()
         {
             int gestureindex;
@@ -28,8 +25,9 @@ namespace RPSLS
 
             Console.WriteLine("Please select a Gesture");
             Console.WriteLine("i.e. 1. Rock is 1");
-            Console.WriteLine("1. Rock \n2. Paper \n3. Scissors \n4. Lizard \n5. Spock");
-            int result = int.Parse(Console.ReadLine());
+            Console.WriteLine("1. Rock \n2. Paper \n3. Scissors \n4. Lizard \n5. Spock"); //USE A TRY CATCH 
+            int result = 0;
+            int.TryParse(Console.ReadLine(),out result);
 
             switch (result)
             {
@@ -44,7 +42,7 @@ namespace RPSLS
                     break;
 
                 case 3:
-                    Console.WriteLine("You have selected Scissor");
+                    Console.WriteLine("You have selected Scissors");
                     gestureindex = 2;
                     break;
 
@@ -65,7 +63,6 @@ namespace RPSLS
 
             List<string> gesture = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
             return gesture[gestureindex];
-        } 
-
+        }
     }
 }
