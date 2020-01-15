@@ -17,21 +17,15 @@ namespace RPSLS
         public string player1Selection;
         public string player2Selection;
 
-
-
-
         //Constructor
         public Game()
         {
-
-
-
         }
         //Member Method
         public void StartGame()
         {
             MainMenu();
-            InstatiatePlayers();
+            InstantiatePlayers();
             while (TotalScoreChecker(player1Points, player2Points))
             {
                 GameGestureSelection();
@@ -42,7 +36,6 @@ namespace RPSLS
         }
         public void MainMenu()
         {
-
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock");
             Console.WriteLine("Select 1 for Human vs Human \nSelect 2 for Human vs Computer \nSelect 3 for Instructions \nSelect 4 for Scoring");
             int selection = 0;
@@ -77,7 +70,7 @@ namespace RPSLS
             }
             gameModeSelected = selection;
         }
-        public void InstatiatePlayers()
+        public void InstantiatePlayers()
         {
             if (gameModeSelected == 1)
             {
@@ -91,7 +84,7 @@ namespace RPSLS
             }
             else
             {
-                Console.WriteLine(" ");
+                Console.WriteLine("Error 414");
             }
         }
         public void Instructions()
@@ -99,9 +92,8 @@ namespace RPSLS
             Console.WriteLine("Instructions: \n");
             Console.WriteLine($"Scissors cuts Paper \nPaper covers Rock \nScissors cuts Paper \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors" +
                              $"\nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock \nand as always... \nRock crushes Scissors " +
-                             $"\n - Sheldon(BBT) \nPress enter to go back to the Main Menu");
-            Console.ReadLine();
-
+                             $"\n - Sheldon(BBT)");
+            PressEnterToContinue();
         }
         public void Scoring()
         {
@@ -119,114 +111,63 @@ namespace RPSLS
         }
         public void PointAssigner()
         {
-            if (player1Selection == "Rock")
+            if (player1Selection == player2Selection)
             {
-                //It Can Beat
+                Console.WriteLine("Its a Tie");
+            }
+            else if (player1Selection == "Rock")
+            {                
                 if (player2Selection == "Lizard" || player2Selection == "Scissors")
                 {
-                    Console.WriteLine("Player 1 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player1Points++;
-                }
-                else if (player2Selection == "Spock" || player2Selection == "Paper")
-                {
-                    Console.WriteLine("Player 2 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player2Points++;
+                    Player1Wins();
                 }
                 else
                 {
-                    Console.WriteLine("Its a Tie");
-                }
+                    Player2Wins();
+                }                    
             }
-
-            if (player1Selection == "Paper")
+            else if (player1Selection == "Paper")
             {
-                if (player2Selection == "Spock" || player2Selection == "Rock")
+                if (player2Selection == "Rock" || player2Selection == "Spock")
                 {
-                    Console.WriteLine("Player 1 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player1Points++;
-                }
-                else if (player2Selection == "Scissors" || player2Selection == "Lizard")
-                {
-                    Console.WriteLine("Player 2 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player2Points++;
+                    Player1Wins();
                 }
                 else
                 {
-                    Console.WriteLine("Its a Tie");
+                    Player2Wins();
                 }
             }
-
-            if (player1Selection == "Scissors")
+            else if (player1Selection == "Scissors")
             {
-                if (player2Selection == "Lizard" || player2Selection == "Paper")
+                if (player2Selection == "Paper" || player2Selection == "Lizard")
                 {
-                    Console.WriteLine("Player 1 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player1Points++;
-                }
-                else if (player2Selection == "Rock" || player2Selection == "Spock")
-                {
-                    Console.WriteLine("Player 2 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player2Points++;
+                    Player1Wins();
                 }
                 else
                 {
-                    Console.WriteLine("Its a Tie");
+                    Player2Wins();
                 }
             }
-
-            if (player1Selection == "Lizard")
+            else if (player1Selection == "Lizard")
             {
                 if (player2Selection == "Spock" || player2Selection == "Paper")
                 {
-                    Console.WriteLine("Player 1 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player1Points++;
-                }
-                else if (player2Selection == "Rock" || player2Selection == "Scissors")
-                {
-                    Console.WriteLine("Player 2 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player2Points++;
+                    Player1Wins();
                 }
                 else
                 {
-                    Console.WriteLine("Its a Tie");
+                    Player2Wins();
                 }
             }
-
-            if (player1Selection == "Spock")
+            else
             {
-                if (player2Selection == "Scissors" || player2Selection == "Rock")
+                if (player2Selection == "Rock" || player2Selection == "Scissors")
                 {
-                    Console.WriteLine("Player 1 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player1Points++;
-                }
-                else if (player2Selection == "Lizard" || player2Selection == "Paper")
-                {
-                    Console.WriteLine("Player 2 Wins this Match");
-                    Console.WriteLine("Press enter to continue..");
-                    Console.ReadLine();
-                    player2Points++;
+                    Player1Wins();
                 }
                 else
                 {
-                    Console.WriteLine("Its a Tie");
+                    Player2Wins();
                 }
             }
         }        
@@ -242,28 +183,46 @@ namespace RPSLS
             if (player1Points == 2)
             {
                 Console.WriteLine("Player 1 You Win This Game");
+                PressEnterToContinue();
                 return false;
             }
             else if (player2Points == 2)
             {
                 Console.WriteLine("Player 2 You Win This Game");
+                PressEnterToContinue();
                 return false;
             }
             else
             {
                 Console.WriteLine("New Match Begins");
+                PressEnterToContinue();
                 return true;
             }
         }
         public void ClearScore()
         {
-            if (player2Points >= 1 || player2Points >= 1)
-                if (player2Points >= 1 || player2Points >= 1)
+            if (player2Points >= 1 || player2Points >= 1)              
                 {
                     player1Points = 0;
                     player2Points = 0;
                 }
         }
-
+        public void Player1Wins()
+        {
+            Console.WriteLine("Player 1 Wins this Match");
+            PressEnterToContinue();
+            player1Points++;
+        }
+        public void Player2Wins()
+        {
+            Console.WriteLine("Player 2 Wins this Match");
+            PressEnterToContinue();
+            player2Points++;
+        }
+        public void PressEnterToContinue()
+        {
+            Console.WriteLine("Press enter to continue..");
+            Console.ReadLine();
+        }
     }
 }

@@ -10,8 +10,7 @@ namespace RPSLS
     {
         //Member Variable
         public string name;
-        public int score;
-        public string gesture;
+        public int score;        
 
         public List<string> gestures;
 
@@ -19,7 +18,6 @@ namespace RPSLS
         public Player()
         {
             gestures = new List<string>() { "Rock", "Paper", "Scissors", "Lizard", "Spock" };
-
         }
         //Member Method
         public abstract string SelectGesture();

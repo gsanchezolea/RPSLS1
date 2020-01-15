@@ -26,12 +26,12 @@ namespace RPSLS
         public override string SelectGesture()
         {
             int randomNumberGenerated;
-            string result;           
+            string result;      
+            
             randomNumberGenerated = GenerataRandomNumber();
             result = gestures[randomNumberGenerated];
             Console.WriteLine("Computer has selected " + result);
             return result;
         }
-
     }
 }
